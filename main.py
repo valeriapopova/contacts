@@ -21,22 +21,21 @@ def first_function():
         b = a.split(" ")
         phone = re.sub(tel_pattern, tel_sub, item[5])
         result = [b[0], b[1], b[2], item[3], item[4], phone, item[6]]
-
         result_list.append(result)
     return result_list
 
 
-# first_function()
+first_function()
 
 
 def second_function():
     contacts = list()
     for items in first_function():
-        for item in items:
-            if items[0] == contacts[item][0]:
-                contacts.append(items)
+        if items[0] == items[0] and items[1] == items[1]:
+            r = items[0] + items[0]
+            contacts.append(r)
+        print(r)
 
-        print(contacts)
 second_function()
 
 # TODO 2: сохраните получившиеся данные в другой файл
