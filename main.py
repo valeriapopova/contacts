@@ -14,33 +14,32 @@ with open("phonebook_raw.csv") as f:
 # TODO 1: выполните пункты 1-3 ДЗ
 
 
-def first_function():
-    result_list = list()
+def first_function(contacts_list):
+    result_list = []
     for item in contacts_list:
         a = " ".join(item)
         b = a.split(" ")
         phone = re.sub(tel_pattern, tel_sub, item[5])
         result = [b[0], b[1], b[2], item[3], item[4], phone, item[6]]
         result_list.append(result)
-    return result_list
+    return second_function(result_list)
 
 
-first_function()
+def second_function(result_list):
+    contacts = {}
+    for items in result_list:
+        if items[0] in contacts:
+            item_value = contacts[items[0]]
+            for i in range(len(item_value)):
+                if items[i]:
+                    item_value[i] = items[i]
+        else:
+            contacts[items[0]] = items
+    return list(contacts.values())
 
-
-def second_function():
-    contacts = list()
-    for items in first_function():
-        if items[0] == items[0] and items[1] == items[1]:
-            r = items[0] + items[0]
-            contacts.append(r)
-        print(r)
-
-second_function()
 
 # TODO 2: сохраните получившиеся данные в другой файл
 # код для записи файла в формате CSV
 with open("phonebook.csv", "w") as f:
     datawriter = csv.writer(f, delimiter=',')
-  # Вместо contacts_list подставьте свой список
-    datawriter.writerows(contacts_list)
+    datawriter.writerows(first_function(contacts_list))
